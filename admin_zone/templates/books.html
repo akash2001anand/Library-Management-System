@@ -1,0 +1,45 @@
+<!-- your_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    {% include "admin_index.html" %}
+    <div class="container center mt-5">
+        <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Book Author Name</th>
+                    <th>No of Pages</th>
+                    <!-- Add other headers as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.book_title }}</td>
+                        <td>{{ book.book_author }}</td>
+                        <td>{{ book.book_pages }}</td>
+                        <!-- Add other data fields as needed -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <center>
+        <a href="{% url 'add_bookpage' %}"><button class="btn btn-primary text-center">Add Book</button></a>
+        <a href="{% url 'delete_bookpage' %}"><button class="btn btn-primary text-center">Delete Book</button></a>
+    </center>
+    
+
+</body>
+</html>
