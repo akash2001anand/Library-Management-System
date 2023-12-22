@@ -1,72 +1,48 @@
-<!DOCTYPE html>
-
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Book</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
- </head>
- <style>
-    /* styles.css */
-
-.container {
-  width: 50%;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.row {
-  margin-bottom: 15px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  font-weight: bold;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.btn {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #0056b3;
-}
-
- </style>
- <body>
-    {% include "admin_index.html" %}
-    
-    <div class="container  mt-5 ">
-        <center><h3>Delete a Book</h3></center>
-        <form method="POST" action="{% url 'delete_book' %}"> 
-            {% csrf_token %}
-        <div class="row mt-4">
-            <div class="form-group col-md-12">
-                <label><i style="font-weight: bold;">Book Name</i></label>
-                <input type="text" class="form-control mt-2" name="name" placeholder="Enter name of the Member" required>
-            </div>
+{% include "admin_index.html" %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the form */
+    .custom-form {
+      border: 3px solid #ddd; /* Border color */
+      padding: 20px;
+      border-radius: 5px; /* Optional: Rounded corners */
+      margin-top: 40px;
+    }
+  </style>
+  <title>Delete Book</title>
+</head>
+<body>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <center><h3 style="color: red;margin-top: 50px;">{{ message }} </h3></center>
+      {% endfor %}
+  </ul>
+  {% endif %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="custom-form" method="POST" action="{% url 'delete_book' %}">
+      
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Book Id</label>
+          <input type="text" class="form-control mt-3" name="id" placeholder="Enter Unique Book Id" required>
         </div>
-
-
-        <button type="submit" class="btn btn-outline-primary mt-4">Delete</button>
+        <button type="submit" class="btn btn-primary mt-3">Delete</button>
+      </form>
     </div>
-    </form>
-</body></html>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+      
+  </body>
+</html>

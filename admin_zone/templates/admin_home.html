@@ -1,3 +1,5 @@
+{% load static %}
+{% include "admin_index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Dashboard</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-{% include "admin_index.html" %}
 <body>
+    {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <center><h3 style="color: red;margin-top: 50px;">{{ message }} </h3></center>
+      {% endfor %}
+  </ul>
+  {% endif %}
     <div class="container mt-5">
-        <center><h1 cl>Welcome to Admin Page...</h1></center>
+        <h3 style="text-align: center;color: blue;">List of Available books</h3>
+        <table class="table" border="3">          
+            <thead class="bg-info">
+                <tr>
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Book Author Name</th>
+                    <th>No of Pages</th>
+                    <!-- Add other headers as needed -->
+                </tr>
+            </thead>
+            <tbody class="bg-transparent">
+                {% for book in Books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.book_title }}</td>
+                        <td>{{ book.book_author }}</td>
+                        <td>{{ book.book_pages }}</td>
+                        <!-- Add other data fields as needed -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

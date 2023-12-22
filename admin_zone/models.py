@@ -15,3 +15,10 @@ class Book(models.Model):
     book_pages = models.PositiveIntegerField()
     def __str__(self):
         return self.book_title
+    
+class Users(models.Model):
+    name = models.CharField(max_length=250)
+    mobno = models.CharField( max_length=50)
+    email = models.EmailField(max_length=254)
+    def __str__(self):
+        return self.book_title

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% include "admin_index.html" %}
  <html lang="en">
  <head>
     <meta charset="UTF-8">
@@ -49,20 +49,29 @@ label {
 .btn:hover {
   background-color: #0056b3;
 }
-
+.container{
+  max-width: 700px !important;
+}
  </style>
  <body>
-    {% include "admin_index.html" %}
     
     <div class="container mt-5">
         <center><h3>Delete a Book</h3></center>
         <form method="POST" action="{% url 'delete_book' %}"> 
             {% csrf_token %}
         <div class="row mt-4">
-            <div class="form-group col-md-12">
-                <label><i style="font-weight: bold;">Book Name</i></label>
-                <input type="text" class="form-control mt-2" name="name" placeholder="Enter name of the Member" required>
-            </div>
+          <div class="form-group col-md-12">
+              <label><i style="font-weight: bold;">Book Name</i></label>
+              <input type="text" class="form-control mt-2" name="name" placeholder="Leave blank if you don't want to change">
+          </div>
+          <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Author Name</i></label>
+            <input type="text" class="form-control mt-2" name="author" placeholder="Leave blank if you don't want to change">
+          </div>
+          <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">No</i></label>
+            <input type="text" class="form-control mt-2" name="page" placeholder="Leave blank if you don't want to change">
+          </div>
         </div>
 
 

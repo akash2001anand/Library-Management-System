@@ -1,4 +1,5 @@
 <!-- your_template.html -->
+{% include "admin_index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +10,17 @@
      rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    {% include "admin_index.html" %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <center><h3 style="color: red;margin-top: 5px;">{{ message }} </h3></center>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="container center mt-5">
-        <table class="table table-primary-dark">
-            <thead>
+        <h3 style="text-align: center;color: blue;">List of Members</h3>
+        <table class="table" border="3">
+            <thead class="bg-info">
                 <tr>
                     <th>Member Id</th>
                     <th>Member Name</th>
@@ -21,13 +29,13 @@
                     <!-- Add other headers as needed -->
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-transparent">
                 {% for member in members %}
                     <tr>
                         <td>{{ member.id }}</td> 
                         <td>{{ member.name }}</td>
                         <td>{{ member.mobno }}</td>
-                        <td>{{ book.email }}</td>
+                        <td>{{ member.email }}</td>
                         <!-- Add other data fields as needed -->
                     </tr>
                 {% endfor %}

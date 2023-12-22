@@ -1,4 +1,5 @@
 <!-- your_template.html -->
+{% include "admin_index.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +11,17 @@
 
 </head>
 <body>
-    {% include "admin_index.html" %}
-    <div class="container center mt-5">
-        <table class="table table-primary">
-            <thead>
+    {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <center><h3 style="color: red;margin-top: 50px;">{{ message }} </h3></center>
+      {% endfor %}
+  </ul>
+  {% endif %}
+    <div class="container mt-5">
+        <h3 style="text-align: center;color: blue;">List of Available books</h3>
+        <table class="table" border="3">          
+            <thead class="bg-info">
                 <tr>
                     <th>Book Id</th>
                     <th>Book Name</th>
@@ -22,8 +30,8 @@
                     <!-- Add other headers as needed -->
                 </tr>
             </thead>
-            <tbody>
-                {% for book in books %}
+            <tbody class="bg-transparent">
+                {% for book in Books %}
                     <tr>
                         <td>{{ book.id }}</td>
                         <td>{{ book.book_title }}</td>
@@ -36,8 +44,8 @@
         </table>
     </div>
     <center>
-        <a href="{% url 'add_bookpage' %}"><button class="btn btn-primary text-center">Add Book</button></a>
-        <a href="{% url 'delete_bookpage' %}"><button class="btn btn-primary text-center">Delete Book</button></a>
+        <a href="{% url 'add_bookpage' %}"><button class="btn btn-primary text-center mr-5">Add Book</button></a>
+        <a href="{% url 'delete_bookpage' %}"><button class="btn btn-primary ml-5 text-center ">Delete Book</button></a>
     </center>
     
 
